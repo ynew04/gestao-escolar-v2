@@ -1,8 +1,12 @@
 import java.util.Scanner;
 
+import menu.MenuTurma;
+import menu.MenuProfessor;
+import menu.MenuAluno;
 import model.Aluno;
 import service.SistemaService;
 import model.Professor;
+import model.Turma;
 
 public class Main {
     
@@ -10,60 +14,41 @@ public class Main {
 
         Scanner entradaUsuario = new Scanner(System.in);
         SistemaService sistema = new SistemaService();
+        MenuAluno menualuno = new MenuAluno();
+        MenuProfessor menuProfessor = new MenuProfessor();
+        MenuTurma menuTurma = new MenuTurma();
 
         int opcao;
 
         do {
-            System.out.println("\n ==== Menu ====");
-            System.out.println("1 - Cadastrar Aluno");
-            System.out.println("2 - Listar Alunos");
-            System.out.println("3 - Cadastrar Professor");
-            System.out.println("4 - Listar Professores");
+            System.out.println("\n ==== SISTEMA ====");
+            System.out.println("1 - Aluno");
+            System.out.println("2 - Professor");
+            System.out.println("3 - Turma");
             System.out.println("0 - Sair..");
             System.out.println("Escolha: ");
 
             opcao = Integer.parseInt(entradaUsuario.nextLine());
 
-            if (opcao ==1) {
-    System.out.print("Nome: ");
-    String nome = entradaUsuario.nextLine();
+            
 
-    System.out.print("Idade: ");
-    String idadeTexto = entradaUsuario.nextLine();
-    int idade = Integer.parseInt(idadeTexto);
+            
 
-    System.out.print("Matrícula: ");
-    String matricula = entradaUsuario.nextLine();
+            
+         if (opcao==1) {
+            
+            menualuno.abrirMenu(entradaUsuario, sistema);
+         }
 
-    Aluno aluno = new Aluno(nome, idade, matricula);
-    sistema.cadastrarAluno(aluno);
+         if(opcao == 2){
 
-    System.out.println("\nAluno cadastrado com sucesso!");
-}
-            if (opcao ==2) {
-                sistema.listarAlunos();
-            }
+    menuProfessor.abrirMenu(entradaUsuario, sistema);
+         }
 
-            if (opcao ==3){
-                System.out.println("Nome: ");
-                String nome = entradaUsuario.nextLine ();
+         if (opcao==3) {
 
-                System.out.println("Matéria: ");
-                String materia = entradaUsuario.nextLine ();
-
-                System.out.println("Registro: ");
-                String registro = entradaUsuario.nextLine ();
-
-                Professor professor = new Professor(nome, materia, registro);
-                sistema.cadastrarProfessor(professor);
-
-                System.out.println("\nProfessor cadastrado com sucesso!");
-            }
-
-            if (opcao ==4) {
-                sistema.listarProfessores();
-                
-            }
+            menuTurma.abrirMenu(entradaUsuario, sistema);
+         }
 
         } while ( opcao != 0);
 
